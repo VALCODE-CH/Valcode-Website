@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ValCode - Deine digitalen Lösungen</title>
+    <link rel="icon" type="image/png" href="assets/logo_w.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -14,7 +15,6 @@
         /* Primary Colors */
         --color-primary: #1C244B;
         --color-primary-light: #2A3A6B;
-        --color-primary-dark: #141B35;
 
         /* Neutral Colors */
         --color-white: #ffffff;
@@ -27,12 +27,6 @@
         --color-gray-200: #e2e8f0;
         --color-gray-100: #f8f9fa;
 
-        /* Service Card Colors */
-        --color-green: #4CAF50;
-        --color-orange: #FF9800;
-        --color-blue: #2196F3;
-        --color-purple: #9C27B0;
-
         /* Opacity Variations */
         --color-white-95: rgba(255, 255, 255, 0.95);
         --color-white-90: rgba(255, 255, 255, 0.9);
@@ -43,8 +37,6 @@
         --color-white-05: rgba(255, 255, 255, 0.05);
         --color-black-08: rgba(0, 0, 0, 0.08);
         --color-black-05: rgba(0, 0, 0, 0.05);
-        --color-primary-10: rgba(28, 36, 75, 0.1);
-        --color-primary-20: rgba(28, 36, 75, 0.2);
         --color-primary-30: rgba(28, 36, 75, 0.3);
 
         /* Gradients */
@@ -153,7 +145,7 @@
         padding: 100px 60px 60px;
         position: relative;
         overflow: hidden;
-        background: url('hero.png') top center/cover no-repeat;
+        background: url('assets/hero.png') top center/cover no-repeat;
     }
 
     .hero::before {
@@ -687,6 +679,37 @@
         z-index: 1;
     }
 
+    /* PORTFOLIO INLINE STYLES */
+    .portfolio-card.dark-bg {
+        background: var(--color-dark);
+    }
+
+    .portfolio-card.orange-bg {
+        background: #FF9800;
+    }
+
+    .portfolio-card.blue-bg {
+        background: #2196F3;
+    }
+
+    .portfolio-card.purple-bg {
+        background: #9C27B0;
+    }
+
+
+    .portfolio-card img {
+        width: auto;
+        max-height: 360px;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .portfolio-card.purple-bg img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 12px;
+    }
+
     /* CTA */
     .cta {
         padding: 140px 60px;
@@ -920,7 +943,7 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="logo">
-            <img src="VClogo_dark.png" alt="ValCode Logo">
+            <img src="assets/VClogo_dark.png" alt="ValCode Logo">
         </div>
         <ul>
             <li><a href="#services">Services</a></li>
@@ -1000,41 +1023,21 @@
         </div>
 
         <div class="portfolio-grid">
-            <div class="portfolio-card" style="background: var(--color-dark);" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause();">
-                <video
-                    src="assets/appoint-mobile.mp4"
-                    style="width: 100%; max-width: 400px; border-radius: 12px;"
-                    muted>
-                </video>
+            <div class="portfolio-card dark-bg">
+                <img src="assets/projects/appoint/main.png" alt="VALCODE Appoint">
                 <div class="portfolio-info">
-                    <h3>VALCODE Appoint (WP-Plugin)</h3>
+                    <h3>VALCODE Appoint</h3>
                     <p>Einfaches Terminmanagement in WordPress: Mitarbeitende, Dienstleistungen und Buchungen übersichtlich an einem Platz.</p>
                 </div>
             </div>
 
-            <div class="portfolio-card" style="background: #FF9800;">
-                <img src="project2.png" alt="Projekt 2" style="width: auto; max-height: 360px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);">
+            <div class="portfolio-card orange-bg">
+                <img src="assets/projects/project2.png" alt="Projekt 2">
                 <div class="portfolio-info">
-                    <h3>VALCODE Appoint Admin App</h3>
+                    <h3>VALCODE Webseite</h3>
                     <p>Die mobile App für iOS & Android, verbunden mit dem Plugin. Volle Verwaltung unterwegs – jederzeit und überall.</p>
                 </div>
             </div>
-            <div class="portfolio-card" style="background: #2196F3;">
-                <img src="project2.png" alt="Projekt 2" style="width: auto; max-height: 360px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);">
-                <div class="portfolio-info">
-                    <h3>Projekt Name</h3>
-                    <p>Webdesign · React</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-card" style="background: #9C27B0;">
-                <img src="project1.png" alt="Projekt 1" style="width: 100%; max-width: 400px; border-radius: 12px;">
-                <div class="portfolio-info">
-                    <h3>Mobile App</h3>
-                    <p>App Development · Flutter</p>
-                </div>
-            </div>
-            
         </div>
     </section>
 
