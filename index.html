@@ -1,1328 +1,283 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValCode - Deine digitalen Lösungen</title>
-    <link rel="icon" type="image/png" href="assets/logo_w.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<style>
-    /* CSS VARIABLES */
-    :root {
-        /* Primary Colors */
-        --color-primary: #1C244B;
-        --color-primary-light: #2A3A6B;
-
-        /* Neutral Colors */
-        --color-white: #ffffff;
-        --color-black: #1a1a1a;
-        --color-dark: #1C244B;
-        --color-gray-900: #2d3748;
-        --color-gray-700: #4a5568;
-        --color-gray-600: #718096;
-        --color-gray-400: #a0aec0;
-        --color-gray-200: #e2e8f0;
-        --color-gray-100: #f8f9fa;
-
-        /* Opacity Variations */
-        --color-white-95: rgba(255, 255, 255, 0.95);
-        --color-white-90: rgba(255, 255, 255, 0.9);
-        --color-white-85: rgba(255, 255, 255, 0.85);
-        --color-white-80: rgba(255, 255, 255, 0.8);
-        --color-white-60: rgba(255, 255, 255, 0.6);
-        --color-white-10: rgba(255, 255, 255, 0.1);
-        --color-white-05: rgba(255, 255, 255, 0.05);
-        --color-black-08: rgba(0, 0, 0, 0.08);
-        --color-black-05: rgba(0, 0, 0, 0.05);
-        --color-primary-30: rgba(28, 36, 75, 0.3);
-
-        /* Gradients */
-        --gradient-primary: linear-gradient(135deg, #1C244B 0%, #2A3A6B 100%);
-        --gradient-primary-90: linear-gradient(90deg, #1C244B, #2A3A6B);
-        --gradient-bg: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-        --gradient-bg-reverse: linear-gradient(90deg, #f8f9fa 0%, #ffffff 100%);
-    }
-
-    /* GENERAL */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        background: var(--color-gray-100);
-        color: var(--color-dark);
-        font-family: 'Inter', sans-serif;
-        line-height: 1.6;
-        overflow-x: hidden;
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    h1, h2, h3 {
-        font-weight: 700;
-        letter-spacing: -0.5px;
-    }
-
-    /* NAVIGATION */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 20px 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-        background: transparent;
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid transparent;
-        box-shadow: none;
-        transition: all 0.3s ease;
-    }
-
-    nav.scrolled {
-        background: var(--color-white-95);
-        border-bottom: 1px solid var(--color-black-08);
-        box-shadow: 0 2px 10px var(--color-black-05);
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo img {
-        height: 40px;
-        width: auto;
-    }
-
-    /* Hamburger Menu Button */
-    .menu-toggle {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px;
-        z-index: 1001;
-        transition: all 0.3s ease;
-    }
-
-    .menu-toggle span {
-        width: 28px;
-        height: 3px;
-        background: var(--color-gray-900);
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 8px);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    .nav-menu {
-        display: flex;
-        gap: 40px;
-        list-style: none;
-    }
-
-    nav a {
-        font-weight: 500;
-        transition: all 0.3s ease;
-        position: relative;
-        color: var(--color-gray-900);
-    }
-
-    nav a:hover {
-        color: var(--color-primary);
-    }
-
-    nav a::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--gradient-primary-90);
-        transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-        width: 100%;
-    }
-
-    /* HERO */
-    .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 100px 60px 60px;
-        position: relative;
-        overflow: hidden;
-        background: url('assets/hero.png') top center/cover no-repeat;
-    }
-
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--color-white-85);
-        z-index: 0;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        max-width: 900px;
-    }
-
-    .hero h1 {
-        font-size: 72px;
-        margin-bottom: 20px;
-        color: var(--color-dark);
-        animation: fadeInUp 0.8s ease;
-    }
-
-    .hero .subtitle {
-        font-size: 24px;
-        color: var(--color-gray-700);
-        margin-bottom: 30px;
-        animation: fadeInUp 0.8s ease 0.2s both;
-    }
-
-    .hero .tagline {
-        font-size: 18px;
-        color: var(--color-gray-600);
-        margin-bottom: 40px;
-        max-width: 650px;
-        margin-left: auto;
-        margin-right: auto;
-        animation: fadeInUp 0.8s ease 0.4s both;
-    }
-
-    .hero-buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        animation: fadeInUp 0.8s ease 0.6s both;
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 16px 32px;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-primary {
-        background: var(--gradient-primary);
-        color: var(--color-white);
-        box-shadow: 0 10px 30px var(--color-primary-30);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 40px var(--color-primary-30);
-    }
-
-    .btn-secondary {
-        background: var(--color-white-90);
-        border: 2px solid var(--color-primary);
-        color: var(--color-primary);
-        backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-        background: var(--color-white);
-        border-color: var(--color-primary-light);
-        color: var(--color-primary-light);
-        transform: translateY(-2px);
-    }
-
-    /* SERVICES */
-    .services {
-        padding: 120px 60px;
-        position: relative;
-        background: var(--gradient-bg);
-    }
-
-    .section-header {
-        max-width: 600px;
-        margin: 0 auto 80px;
-        text-align: center;
-    }
-
-    .section-title {
-        font-size: 56px;
-        margin-bottom: 20px;
-        color: var(--color-dark);
-        line-height: 1.1;
-    }
-
-    .section-subtitle {
-        color: var(--color-gray-600);
-        font-size: 20px;
-        line-height: 1.6;
-    }
-
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 30px;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .service-card {
-        background: var(--color-white);
-        border-radius: 24px;
-        padding: 50px 40px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        border: 2px solid transparent;
-    }
-
-    .service-card:nth-child(1) {
-        grid-column: span 6;
-        background: var(--gradient-primary);
-        color: white;
-    }
-
-    .service-card:nth-child(2) {
-        grid-column: span 6;
-        background: var(--color-dark);
-        color: white;
-    }
-
-    .service-card:nth-child(3) {
-        grid-column: span 4;
-        border: 2px solid var(--color-gray-200);
-    }
-
-    .service-card:nth-child(4) {
-        grid-column: span 4;
-        border: 2px solid var(--color-gray-200);
-    }
-
-    .service-card:nth-child(5) {
-        grid-column: span 4;
-        border: 2px solid var(--color-gray-200);
-    }
-
-    .service-card:nth-child(6) {
-        grid-column: span 12;
-        background: var(--gradient-bg-reverse);
-        border: 2px solid var(--color-gray-200);
-        display: flex;
-        align-items: center;
-        gap: 40px;
-        padding: 40px 50px;
-    }
-
-    .service-card::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-    }
-
-    .service-card:hover::after {
-        opacity: 1;
-    }
-
-    .service-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    }
-
-    .service-card:nth-child(1):hover,
-    .service-card:nth-child(2):hover {
-        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
-    }
-
-    .service-icon {
-        font-size: 56px;
-        margin-bottom: 24px;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-
-    .service-card:hover .service-icon {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .service-card h3 {
-        font-size: 28px;
-        margin-bottom: 16px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .service-card:nth-child(1) h3,
-    .service-card:nth-child(2) h3 {
-        color: white;
-    }
-
-    .service-card:not(:nth-child(1)):not(:nth-child(2)) h3 {
-        color: var(--color-dark);
-    }
-
-    .service-card p {
-        line-height: 1.8;
-        position: relative;
-        z-index: 1;
-        font-size: 16px;
-    }
-
-    .service-card:nth-child(1) p,
-    .service-card:nth-child(2) p {
-        color: var(--color-white-90);
-    }
-
-    .service-card:not(:nth-child(1)):not(:nth-child(2)) p {
-        color: var(--color-gray-700);
-    }
-
-    .service-card:nth-child(6) {
-        flex-direction: row;
-    }
-
-    .service-card:nth-child(6) .service-icon {
-        margin-bottom: 0;
-        font-size: 72px;
-        flex-shrink: 0;
-    }
-
-    .service-card:nth-child(6) div {
-        flex: 1;
-    }
-
-    /* PORTFOLIO */
-    .portfolio {
-        padding: 120px 60px;
-        background: var(--color-gray-100);
-    }
-
-    .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 40px;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .portfolio-card {
-        border-radius: 24px;
-        padding: 60px 40px 40px;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        min-height: 500px;
-    }
-
-    .portfolio-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-    }
-
-    /* DEVICE MOCKUPS */
-    .device {
-        position: relative;
-        transition: transform 0.4s ease;
-    }
-
-    .portfolio-card:hover .device {
-        transform: scale(1.05);
-    }
-
-    /* LAPTOP */
-    .device.laptop {
-        width: 100%;
-        max-width: 400px;
-        position: relative;
-    }
-
-    .device.laptop::before {
-        content: '';
-        display: block;
-        padding-bottom: 62.5%; /* 16:10 aspect ratio */
-    }
-
-    .device.laptop .device-screen {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--color-black);
-        border-radius: 12px;
-        padding: 8px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    .device.laptop .device-screen::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120%;
-        height: 8px;
-        background: linear-gradient(to bottom, #333, var(--color-black));
-        border-radius: 0 0 8px 8px;
-    }
-
-    .device.laptop .device-screen img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 6px;
-        display: block;
-    }
-
-    /* PHONE */
-    .device.phone {
-        width: 180px;
-        height: 360px;
-        position: relative;
-        background: var(--color-black);
-        border-radius: 30px;
-        padding: 12px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    .device.phone .device-frame {
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 20px;
-        background: var(--color-black);
-        border-radius: 0 0 15px 15px;
-        z-index: 2;
-    }
-
-    .device.phone .device-screen {
-        width: 100%;
-        height: 100%;
-        background: var(--color-white);
-        border-radius: 22px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .device.phone .device-screen img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    /* PORTFOLIO INFO */
-    .portfolio-info {
-        text-align: center;
-        color: white;
-        z-index: 1;
-    }
-
-    .portfolio-info h3 {
-        font-size: 24px;
-        margin-bottom: 8px;
-        color: white;
-    }
-
-    .portfolio-info p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 500;
-    }
-
-    /* ABOUT */
-    .about {
-        padding: 140px 60px;
-        background: var(--color-white);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .about::before {
-        content: '';
-        position: absolute;
-        top: -200px;
-        right: -200px;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
-        border-radius: 50%;
-    }
-
-    .about-wrapper {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 100px;
-        align-items: center;
-    }
-
-    .about-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .about h2 {
-        font-size: 52px;
-        margin-bottom: 30px;
-        color: var(--color-dark);
-        line-height: 1.2;
-    }
-
-    .about p {
-        font-size: 19px;
-        color: var(--color-gray-700);
-        line-height: 1.8;
-        margin-bottom: 24px;
-    }
-
-    .about-highlight {
-        background: var(--gradient-primary);
-        padding: 40px;
-        margin: 50px 0;
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .about-highlight::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-    }
-
-    .about-highlight p {
-        margin: 0;
-        color: white;
-        font-size: 18px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .about-highlight strong {
-        display: block;
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    /* TECH STACK */
-    .tech-stack {
-        position: relative;
-        z-index: 1;
-    }
-
-    .tech-stack h3 {
-        margin-bottom: 40px;
-        font-size: 28px;
-        color: var(--color-dark);
-    }
-
-    .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-    }
-
-    .tech-tag {
-        padding: 16px 24px;
-        background: var(--color-gray-100);
-        border: 2px solid var(--color-gray-200);
-        border-radius: 12px;
-        font-size: 15px;
-        font-weight: 500;
-        color: var(--color-gray-900);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .tech-tag::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: var(--gradient-primary);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .tech-tag:hover {
-        border-color: var(--color-primary);
-        color: white;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px var(--color-primary-30);
-    }
-
-    .tech-tag:hover::before {
-        opacity: 1;
-    }
-
-    .tech-tag span {
-        position: relative;
-        z-index: 1;
-    }
-
-    /* PORTFOLIO INLINE STYLES */
-    .portfolio-card.dark-bg {
-        background: var(--color-dark);
-    }
-
-    .portfolio-card img {
-        width: auto;
-        max-height: 360px;
-        border-radius: 30px;
-    }
-
-    .portfolio-card.purple-bg img {
-        width: 100%;
-        max-width: 400px;
-        border-radius: 12px;
-    }
-
-    /* CTA */
-    .cta {
-        padding: 140px 60px;
-        position: relative;
-        overflow: hidden;
-        background: var(--color-dark);
-    }
-
-    .cta::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background:
-            radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
-        z-index: 0;
-    }
-
-    .cta-content {
-        position: relative;
-        z-index: 1;
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 80px;
-        align-items: center;
-    }
-
-    .cta-text h2 {
-        font-size: 56px;
-        margin-bottom: 24px;
-        color: var(--color-white);
-        line-height: 1.2;
-    }
-
-    .cta-text p {
-        font-size: 20px;
-        color: var(--color-white-80);
-        line-height: 1.7;
-        margin-bottom: 0;
-    }
-
-    .cta-action {
-        background: var(--color-white-05);
-        backdrop-filter: blur(10px);
-        border: 2px solid var(--color-white-10);
-        border-radius: 24px;
-        padding: 50px;
-        text-align: center;
-    }
-
-    .cta-action .btn-primary {
-        background: var(--gradient-primary);
-        color: white;
-        width: 100%;
-        padding: 20px 40px;
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-
-    .cta-action .btn-primary:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 15px 40px var(--color-primary-30);
-    }
-
-    .cta-info {
-        color: var(--color-white-60);
-        font-size: 14px;
-        margin-top: 16px;
-    }
-
-    /* FOOTER */
-    footer {
-        padding: 60px 60px 40px;
-        background: var(--color-dark);
-        border-top: none;
-    }
-
-    .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-
-    .footer-section h3 {
-        margin-bottom: 20px;
-        font-size: 18px;
-        color: var(--color-white);
-    }
-
-    .footer-section p, .footer-section a {
-        color: var(--color-gray-400);
-        margin-bottom: 10px;
-        display: block;
-        transition: color 0.3s ease;
-    }
-
-    .footer-section a:hover {
-        color: var(--color-primary);
-    }
-
-    .footer-bottom {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid var(--color-white-10);
-        color: var(--color-gray-400);
-        font-size: 14px;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-        .about-wrapper {
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-
-        .cta-content {
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-
-        .tech-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        nav {
-            padding: 15px 30px;
-        }
-
-        /* Show hamburger menu on mobile */
-        .menu-toggle {
-            display: flex;
-        }
-
-        /* Mobile Navigation Menu */
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background: var(--color-white);
-            flex-direction: column;
-            padding: 100px 40px 40px;
-            gap: 30px;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-menu li {
-            opacity: 0;
-            transform: translateX(30px);
-            animation: none;
-        }
-
-        .nav-menu.active li {
-            animation: slideInRight 0.5s ease forwards;
-        }
-
-        .nav-menu.active li:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .nav-menu.active li:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .nav-menu.active li:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .nav-menu.active li:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .nav-menu a {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--color-dark);
-            display: block;
-            padding: 10px 0;
-        }
-
-        .nav-menu a::after {
-            display: none;
-        }
-
-        /* Overlay when menu is open */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            backdrop-filter: blur(0px);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.4s ease;
-            z-index: 999;
-        }
-
-        body.menu-open::before {
-            opacity: 1;
-            backdrop-filter: blur(5px);
-            background: rgba(0, 0, 0, 0.3);
-            pointer-events: all;
-        }
-
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        .hero {
-            padding: 80px 30px 40px;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-        }
-
-        .hero .subtitle {
-            font-size: 18px;
-        }
-
-        .hero .tagline {
-            font-size: 16px;
-        }
-
-        .hero-buttons {
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .services, .about, .cta, .portfolio {
-            padding: 60px 30px;
-        }
-
-        .section-title, .about h2, .cta-text h2 {
-            font-size: 36px;
-        }
-
-        .section-subtitle, .cta-text p {
-            font-size: 16px;
-        }
-
-        .services-grid {
-            grid-template-columns: 1fr !important;
-        }
-
-        .service-card {
-            grid-column: span 1 !important;
-        }
-
-        .service-card:nth-child(6) {
-            flex-direction: column;
-        }
-
-        .service-card:nth-child(6) .service-icon {
-            margin-bottom: 20px;
-            font-size: 56px;
-        }
-
-        .portfolio-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .portfolio-card {
-            min-height: 400px;
-            padding: 40px 20px 30px;
-        }
-
-        .device.laptop {
-            max-width: 100%;
-        }
-
-        .tech-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .cta-action {
-            padding: 30px;
-        }
-    }
-</style>
-
-<body>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">
-            <img src="assets/VClogo_dark.png" alt="ValCode Logo">
-        </div>
-
-        <!-- Hamburger Menu Button -->
-        <button class="menu-toggle" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <ul class="nav-menu">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#about">Über uns</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Digitale Lösungen, die funktionieren.</h1>
-            <p class="subtitle">Von Webseiten bis Software - wir bringen deine Ideen zum Leben</p>
-            <p class="tagline">Junge Entwickler aus dem Wallis mit Leidenschaft für Code, Design und alles was mit IT zu tun hat. Wir programmieren in unserer Freizeit und sind offen für spannende Projekte.</p>
-
-            <div class="hero-buttons">
-                <a href="#kontakt" class="btn-primary">Projekt starten</a>
-                <a href="#services" class="btn-secondary">Was wir machen</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="services">
-        <div class="section-header">
-            <h2 class="section-title">Was wir machen</h2>
-            <p class="section-subtitle">Von der Idee bis zur fertigen Lösung – alles aus einer Hand</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fa-solid fa-globe service-icon"></i>
-                <h3>Webseiten & Webapps</h3>
-                <p>Moderne, responsive Webseiten und Webapplikationen mit klarem Design und starker Performance. Von einfachen Landingpages bis zu komplexen Plattformen.</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ValCode - Deine digitalen Lösungen</title>
+        <link rel="icon" type="image/png" href="assets/logo_w.png">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/index.css">
+    </head>
+    <body>
+        <!-- NAVIGATION -->
+        <nav>
+            <div class="logo">
+                <img src="assets/VClogo_dark.png" alt="ValCode Logo">
             </div>
 
-            <div class="service-card">
-                <i class="fa-solid fa-mobile-screen-button service-icon"></i>
-                <h3>Mobile Apps</h3>
-                <p>Native und Cross-Platform Apps für iOS und Android. Deine Idee als App in der Tasche deiner Nutzer.</p>
-            </div>
+            <!-- Hamburger Menu Button -->
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-            <div class="service-card">
-                <i class="fa-solid fa-laptop-code service-icon"></i>
-                <h3>Software-Entwicklung</h3>
-                <p>Individuelle Software-Lösungen, Tools und Automatisierungen. Vom kleinen Script bis zur kompletten Anwendung.</p>
-            </div>
+            <ul class="nav-menu">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
 
-            <div class="service-card">
-                <i class="fa-solid fa-rocket service-icon"></i>
-                <h3>Hosting & Deployment</h3>
-                <p>Wir übernehmen das Hosting deiner Projekte. Schnell, sicher und zuverlässig – mit persönlichem Support.</p>
-            </div>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Digitale Lösungen, die funktionieren.</h1>
+                <p class="subtitle">Von Webseiten bis Software - wir bringen deine Ideen zum Leben</p>
+                <p class="tagline">Junge Entwickler aus dem Wallis mit Leidenschaft für Code, Design und alles was mit IT zu tun hat. Wir programmieren in unserer Freizeit und sind offen für spannende Projekte.</p>
 
-            <div class="service-card">
-                <i class="fa-solid fa-plug service-icon"></i>
-                <h3>API & Integrationen</h3>
-                <p>Schnittstellen-Entwicklung, Datenanbindungen und System-Integrationen. Wir verbinden was zusammengehört.</p>
-            </div>
-
-            <div class="service-card">
-                <i class="fa-solid fa-palette service-icon"></i>
-                <div>
-                    <h3>UI/UX Design</h3>
-                    <p>Benutzerfreundliches Design, das nicht nur gut aussieht, sondern auch funktioniert. Modern, klar und intuitiv.</p>
+                <div class="hero-buttons">
+                    <a href="#kontakt" class="btn-primary">Projekt starten</a>
+                    <a href="#services" class="btn-secondary">Was wir machen</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="portfolio">
-        <div class="section-header">
-            <h2 class="section-title">Unsere Projekte</h2>
-            <p class="section-subtitle">Einblick in unsere Arbeiten – von Webseiten bis Apps</p>
-        </div>
+        <!-- SERVICES -->
+        <section id="services" class="services">
+            <div class="section-header">
+                <h2 class="section-title">Was wir machen</h2>
+                <p class="section-subtitle">Von der Idee bis zur fertigen Lösung – alles aus einer Hand</p>
+            </div>
 
-        <div class="portfolio-grid">
-            <a class="portfolio-card dark-bg" href="https://appoint.valcode.ch" target="_blank">
-                <img src="assets/projects/appoint/main.png" alt="VALCODE Appoint">
-                <div class="portfolio-info">
-                    <h3>VALCODE Appoint</h3>
-                    <p>Einfaches Terminmanagement in WordPress: Mitarbeitende, Dienstleistungen und Buchungen übersichtlich an einem Platz.</p>
-                </div>
-            </a>
-
-            <a class="portfolio-card dark-bg" href="https://valcode.ch">
-                <img src="assets/projects/valcode-website/main_laptop.png" alt="VALCODE.CH" height="300">
-                <div class="portfolio-info">
-                    <h3>VALCODE Webseite</h3>
-                    <p>Unsere moderne, benutzerfreundliche Plattform, die VALCODE und unsere Lösungen übersichtlich darstellt. Besucher finden schnell Informationen zu Projekten, Services, Kontaktmöglichkeiten und dem Unternehmen selbst.</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about">
-        <div class="about-wrapper">
-            <div class="about-content">
-                <h2>Über uns</h2>
-                <p>Wir sind junge Entwickler aus dem Wallis, die in ihrer Freizeit mit Leidenschaft programmieren und an IT-Projekten arbeiten. Was als Hobby begann, ist zu unserer grössten Expertise geworden.</p>
-
-                <div class="about-highlight">
-                    <p><strong>Unser Ansatz:</strong> Wir sind keine grosse Agentur mit Overhead und endlosen Meetings. Stattdessen bekommst du direkten Kontakt, schnelle Kommunikation und Entwickler, die wirklich coden. Wir nehmen uns Zeit für dein Projekt – weil wir es lieben, digitale Lösungen zu bauen.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa-solid fa-globe service-icon"></i>
+                    <h3>Webseiten & Webapps</h3>
+                    <p>Moderne, responsive Webseiten und Webapplikationen mit klarem Design und starker Performance. Von einfachen Landingpages bis zu komplexen Plattformen.</p>
                 </div>
 
-                <p>Ob Webseiten, Apps, Software oder Hosting – wir sind offen für allerlei Projekte und freuen uns auf neue Herausforderungen. Schreib uns einfach an!</p>
-            </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-mobile-screen-button service-icon"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Native und Cross-Platform Apps für iOS und Android. Deine Idee als App in der Tasche deiner Nutzer.</p>
+                </div>
 
-            <div class="tech-stack">
-                <h3>Technologien, mit denen wir arbeiten</h3>
-                <div class="tech-grid">
-                    <div class="tech-tag"><span>React</span></div>
-                    <div class="tech-tag"><span>Next.js</span></div>
-                    <div class="tech-tag"><span>TypeScript</span></div>
-                    <div class="tech-tag"><span>Node.js</span></div>
-                    <div class="tech-tag"><span>Python</span></div>
-                    <div class="tech-tag"><span>PHP</span></div>
-                    <div class="tech-tag"><span>MySQL</span></div>
-                    <div class="tech-tag"><span>PostgreSQL</span></div>
-                    <div class="tech-tag"><span>MongoDB</span></div>
-                    <div class="tech-tag"><span>Docker</span></div>
-                    <div class="tech-tag"><span>Git</span></div>
-                    <div class="tech-tag"><span>REST APIs</span></div>
-                    <div class="tech-tag"><span>WordPress</span></div>
-                    <div class="tech-tag"><span>Tailwind</span></div>
-                    <div class="tech-tag"><span>Flutter</span></div>
+                <div class="service-card">
+                    <i class="fa-solid fa-laptop-code service-icon"></i>
+                    <h3>Software-Entwicklung</h3>
+                    <p>Individuelle Software-Lösungen, Tools und Automatisierungen. Vom kleinen Script bis zur kompletten Anwendung.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fa-solid fa-rocket service-icon"></i>
+                    <h3>Hosting & Deployment</h3>
+                    <p>Wir übernehmen das Hosting deiner Projekte. Schnell, sicher und zuverlässig – mit persönlichem Support.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fa-solid fa-plug service-icon"></i>
+                    <h3>API & Integrationen</h3>
+                    <p>Schnittstellen-Entwicklung, Datenanbindungen und System-Integrationen. Wir verbinden was zusammengehört.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fa-solid fa-palette service-icon"></i>
+                    <div>
+                        <h3>UI/UX Design</h3>
+                        <p>Benutzerfreundliches Design, das nicht nur gut aussieht, sondern auch funktioniert. Modern, klar und intuitiv.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA -->
-    <section id="kontakt" class="cta">
-        <div class="cta-content">
-            <div class="cta-text">
-                <h2>Lass uns zusammenarbeiten</h2>
-                <p>Hast du eine Idee oder ein Projekt im Kopf? Melde dich unverbindlich bei uns und wir besprechen gemeinsam, wie wir dir helfen können.</p>
+        <!-- PORTFOLIO -->
+        <section id="portfolio" class="portfolio">
+            <div class="section-header">
+                <h2 class="section-title">Unsere Projekte</h2>
+                <p class="section-subtitle">Einblick in unsere Arbeiten – von Webseiten bis Apps</p>
             </div>
 
-            <div class="cta-action">
-                <a href="mailto:info@valcode.ch" class="btn-primary">info@valcode.ch</a>
-                <p class="cta-info">Kostenlose Erstberatung · Keine Verpflichtung</p>
+            <div class="portfolio-grid">
+                <a class="portfolio-card dark-bg" href="https://appoint.valcode.ch" target="_blank">
+                    <img src="assets/projects/appoint/main.png" alt="VALCODE Appoint">
+                    <div class="portfolio-info">
+                        <h3>VALCODE Appoint</h3>
+                        <p>Einfaches Terminmanagement in WordPress: Mitarbeitende, Dienstleistungen und Buchungen übersichtlich an einem Platz.</p>
+                    </div>
+                </a>
+
+                <a class="portfolio-card dark-bg" href="https://valcode.ch">
+                    <img src="assets/projects/valcode-website/main_laptop.png" alt="VALCODE.CH" height="300">
+                    <div class="portfolio-info">
+                        <h3>VALCODE Webseite</h3>
+                        <p>Unsere moderne, benutzerfreundliche Plattform, die VALCODE und unsere Lösungen übersichtlich darstellt. Besucher finden schnell Informationen zu Projekten, Services, Kontaktmöglichkeiten und dem Unternehmen selbst.</p>
+                    </div>
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>ValCode</h3>
-                <p>Digitale Lösungen aus dem Wallis</p>
-                <p>Von Entwicklern, für alle die digitale Projekte brauchen</p>
+        <!-- ABOUT -->
+        <section id="about" class="about">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <h2>Über uns</h2>
+                    <p>Wir sind junge Entwickler aus dem Wallis, die in ihrer Freizeit mit Leidenschaft programmieren und an IT-Projekten arbeiten. Was als Hobby begann, ist zu unserer grössten Expertise geworden.</p>
+
+                    <div class="about-highlight">
+                        <p><strong>Unser Ansatz:</strong> Wir sind keine grosse Agentur mit Overhead und endlosen Meetings. Stattdessen bekommst du direkten Kontakt, schnelle Kommunikation und Entwickler, die wirklich coden. Wir nehmen uns Zeit für dein Projekt – weil wir es lieben, digitale Lösungen zu bauen.</p>
+                    </div>
+
+                    <p>Ob Webseiten, Apps, Software oder Hosting – wir sind offen für allerlei Projekte und freuen uns auf neue Herausforderungen. Schreib uns einfach an!</p>
+                </div>
+
+                <div class="tech-stack">
+                    <h3>Technologien, mit denen wir arbeiten</h3>
+                    <div class="tech-grid">
+                        <div class="tech-tag"><span>React</span></div>
+                        <div class="tech-tag"><span>Next.js</span></div>
+                        <div class="tech-tag"><span>TypeScript</span></div>
+                        <div class="tech-tag"><span>Node.js</span></div>
+                        <div class="tech-tag"><span>Python</span></div>
+                        <div class="tech-tag"><span>PHP</span></div>
+                        <div class="tech-tag"><span>MySQL</span></div>
+                        <div class="tech-tag"><span>PostgreSQL</span></div>
+                        <div class="tech-tag"><span>MongoDB</span></div>
+                        <div class="tech-tag"><span>Docker</span></div>
+                        <div class="tech-tag"><span>Git</span></div>
+                        <div class="tech-tag"><span>REST APIs</span></div>
+                        <div class="tech-tag"><span>WordPress</span></div>
+                        <div class="tech-tag"><span>Tailwind</span></div>
+                        <div class="tech-tag"><span>Flutter</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="kontakt" class="cta">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Lass uns zusammenarbeiten</h2>
+                    <p>Hast du eine Idee oder ein Projekt im Kopf? Melde dich unverbindlich bei uns und wir besprechen gemeinsam, wie wir dir helfen können.</p>
+                </div>
+
+                <div class="cta-action">
+                    <a href="mailto:info@valcode.ch" class="btn-primary">info@valcode.ch</a>
+                    <p class="cta-info">Kostenlose Erstberatung · Keine Verpflichtung</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ValCode</h3>
+                    <p>Digitale Lösungen aus dem Wallis</p>
+                    <p>Von Entwicklern, für alle die digitale Projekte brauchen</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Webseiten & Webapps</a>
+                    <a href="#services">Mobile Apps</a>
+                    <a href="#services">Software-Entwicklung</a>
+                    <a href="#services">Hosting</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <a href="mailto:info@valcode.ch">info@valcode.ch</a>
+                    <p>Wallis, Schweiz</p>
+                </div>
             </div>
 
-            <div class="footer-section">
-                <h3>Services</h3>
-                <a href="#services">Webseiten & Webapps</a>
-                <a href="#services">Mobile Apps</a>
-                <a href="#services">Software-Entwicklung</a>
-                <a href="#services">Hosting</a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ValCode. Alle Rechte vorbehalten.</p>
             </div>
+        </footer>
 
-            <div class="footer-section">
-                <h3>Kontakt</h3>
-                <a href="mailto:info@valcode.ch">info@valcode.ch</a>
-                <p>Wallis, Schweiz</p>
-            </div>
-        </div>
+        <script>
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const body = document.body;
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 ValCode. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const body = document.body;
-
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            body.classList.toggle('menu-open');
-        });
-
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
             });
-        });
 
-        // Close menu when clicking on overlay
-        document.addEventListener('click', function(e) {
-            if (body.classList.contains('menu-open') &&
-                !navMenu.contains(e.target) &&
-                !menuToggle.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
 
-        // Smooth Scroll für Navigationslinks
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+            // Close menu when clicking on overlay
+            document.addEventListener('click', function(e) {
+                if (body.classList.contains('menu-open') &&
+                    !navMenu.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
                 }
             });
-        });
 
-        // Auch für die Hero-Buttons
-        document.querySelectorAll('.hero-buttons a[href^="#"], .btn-primary[href^="#"], .btn-secondary[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            // Smooth Scroll für Navigationslinks
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Auch für die Hero-Buttons
+            document.querySelectorAll('.hero-buttons a[href^="#"], .btn-primary[href^="#"], .btn-secondary[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Navigation Hintergrund beim Scrollen
+            const nav = document.querySelector('nav');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
                 }
             });
-        });
+        </script>
 
-        // Navigation Hintergrund beim Scrollen
-        const nav = document.querySelector('nav');
-
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    </script>
-
-</body>
-
+    </body>
 </html>
