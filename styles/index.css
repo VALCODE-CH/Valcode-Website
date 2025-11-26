@@ -613,8 +613,8 @@
 }
 
 .cta-action .btn-primary {
-    background: var(--gradient-primary);
-    color: white;
+    background: var(--color-white);
+    color: var(--color-dark);
     width: 100%;
     padding: 20px 40px;
     font-size: 18px;

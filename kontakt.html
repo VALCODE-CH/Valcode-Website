@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kontakt - ValCode</title>
+        <link rel="icon" type="image/png" href="/assets/logo_w.png">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="/styles/global.css">
+        <link rel="stylesheet" href="/styles/kontakt.css">
+    </head>
+    <body>
+        <nav>
+            <div class="logo">
+                <a href="https://valcode.ch">
+                    <img src="/assets/VClogo_dark.png" alt="ValCode Logo">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="https://valcode.ch#services">Services</a></li>
+                <li><a href="https://valcode.ch#portfolio">Portfolio</a></li>
+                <li><a href="https://valcode.ch#about">Über uns</a></li>
+                <li><a href="https://valcode.ch/kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Lass uns zusammenarbeiten</h1>
+                <p class="subtitle">Wir freuen uns auf deine Nachricht</p>
+                <p class="tagline">Hast du eine Idee oder ein Projekt im Kopf? Melde dich unverbindlich bei uns und wir besprechen gemeinsam, wie wir dir helfen können.</p>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fa-solid fa-envelope info-icon"></i>
+                        <h3>E-Mail</h3>
+                        <a href="mailto:info@valcode.ch">info@valcode.ch</a>
+                        <p>Wir antworten in der Regel innerhalb von 24 Stunden</p>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-location-dot info-icon"></i>
+                        <h3>Standort</h3>
+                        <p>Wallis, Schweiz</p>
+                        <p class="info-detail">Remote & lokal verfügbar</p>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-clock info-icon"></i>
+                        <h3>Verfügbarkeit</h3>
+                        <p>Flexibel nach Vereinbarung</p>
+                    </div>
+
+                    <div class="info-highlight">
+                        <h3>Was du erwarten kannst:</h3>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Kostenlose Erstberatung</li>
+                            <li><i class="fa-solid fa-check"></i> Schnelle & direkte Kommunikation</li>
+                            <li><i class="fa-solid fa-check"></i> Transparente Abläufe</li>
+                            <li><i class="fa-solid fa-check"></i> Persönlicher Support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form" action="mailto:info@valcode.ch" method="post" enctype="text/plain" name="contactForm">
+                        <div class="form-header">
+                            <h2>Schreib uns eine Nachricht</h2>
+                            <p>Fülle das Formular aus oder schreibe uns direkt an <a href="mailto:info@valcode.ch">info@valcode.ch</a></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Dein Name" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-Mail *</label>
+                            <input type="email" id="email" name="email" required placeholder="deine@email.ch" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon (optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+41 XX XXX XX XX" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="project">Projekttyp</label>
+                            <select id="project" name="project" autocomplete="off">
+                                <option value="">Bitte auswählen</option>
+                                <option value="webseite">Webseite</option>
+                                <option value="webapp">Webapplikation</option>
+                                <option value="mobile">Mobile App</option>
+                                <option value="software">Software-Entwicklung</option>
+                                <option value="hosting">Hosting</option>
+                                <option value="api">API & Integrationen</option>
+                                <option value="design">UI/UX Design</option>
+                                <option value="andere">Andere</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Nachricht *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Erzähle uns von deinem Projekt..." autocomplete="off"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Nachricht senden
+                        </button>
+
+                        <p class="form-note">* Pflichtfelder</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="section-header">
+                <h2 class="section-title">Häufig gestellte Fragen</h2>
+                <p class="section-subtitle">Antworten auf die wichtigsten Fragen</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wie lange dauert die Entwicklung eines Projekts?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Die Dauer hängt vom Projektumfang ab. Eine einfache Webseite kann in 1-2 Wochen fertig sein, während komplexere Webapps oder Mobile Apps mehrere Wochen bis Monate in Anspruch nehmen. Wir besprechen den Zeitrahmen individuell mit dir.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Was kostet ein Projekt bei ValCode?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Die Kosten variieren je nach Projektgrösse und Komplexität. Wir erstellen dir nach einer kostenlosen Erstberatung ein individuelles Angebot. Durch unsere Arbeitsweise als Freizeit-Entwickler können wir oft günstigere Preise als grosse Agenturen anbieten.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bietet ihr auch Wartung und Support nach Projektabschluss?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ja, wir bieten Wartung, Updates und Support auch nach Projektabschluss an. Das können wir als einmalige Leistung oder als laufenden Service vereinbaren – ganz nach deinen Bedürfnissen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Arbeitet ihr nur mit Kunden aus der Schweiz?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nein, wir arbeiten mit Kunden aus der gesamten DACH-Region und darüber hinaus. Dank digitaler Kommunikation ist der Standort kein Problem. Wir sind flexibel und können uns an deine Zeitzone anpassen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Kann ich auch nur einen Teil meines Projekts auslagern?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolut! Wir können dich bei spezifischen Aufgaben unterstützen, etwa bei der Frontend-Entwicklung, API-Integration oder beim Design. Du entscheidest, wo wir helfen sollen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wie läuft die Zusammenarbeit ab?</h3>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nach deiner Anfrage führen wir ein kostenloses Erstgespräch, um dein Projekt zu verstehen. Dann erstellen wir ein Angebot und Zeitplan. Während der Entwicklung halten wir dich regelmässig auf dem Laufenden und holen dein Feedback ein.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ValCode</h3>
+                    <p>Digitale Lösungen aus dem Wallis</p>
+                    <p>Von Entwicklern, für alle die digitale Projekte brauchen</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="https://valcode.ch#services">Webseiten & Webapps</a>
+                    <a href="https://valcode.ch#services">Mobile Apps</a>
+                    <a href="https://valcode.ch#services">Software-Entwicklung</a>
+                    <a href="https://valcode.ch#services">Hosting</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <a href="mailto:info@valcode.ch">info@valcode.ch</a>
+                    <p>Wallis, Schweiz</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ValCode. Alle Rechte vorbehalten.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const body = document.body;
+
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                body.classList.toggle('menu-open');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+
+            // Close menu when clicking on overlay
+            document.addEventListener('click', function(e) {
+                if (body.classList.contains('menu-open') &&
+                    !navMenu.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                }
+            });
+
+            // Navigation Hintergrund beim Scrollen
+            const nav = document.querySelector('nav');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    // Close all items
+                    faqItems.forEach(faqItem => {
+                        faqItem.classList.remove('active');
+                    });
+
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Telefonnummer-Formatierung
+            const phoneInput = document.getElementById('phone');
+
+            phoneInput.addEventListener('input', function(e) {
+                // Speichere die Cursor-Position
+                let cursorPos = e.target.selectionStart;
+                let oldValue = e.target.value;
+
+                let value = e.target.value.replace(/\D/g, ''); // Entferne alle Nicht-Zahlen
+
+                // Wenn es mit 41 beginnt (internationale Schweizer Nummer)
+                if (value.startsWith('41')) {
+                    value = value.substring(2);
+                }
+                // Wenn es mit 0 beginnt (nationale Schweizer Nummer)
+                if (value.startsWith('0')) {
+                    value = value.substring(1);
+                }
+
+                // Begrenze auf maximal 9 Ziffern
+                if (value.length > 9) {
+                    value = value.substring(0, 9);
+                }
+
+                // Formatiere die Nummer: +41 XX XXX XX XX
+                let formatted = '+41';
+
+                if (value.length > 0) {
+                    formatted += ' ' + value.substring(0, 2);
+                }
+                if (value.length > 2) {
+                    formatted += ' ' + value.substring(2, 5);
+                }
+                if (value.length > 5) {
+                    formatted += ' ' + value.substring(5, 7);
+                }
+                if (value.length > 7) {
+                    formatted += ' ' + value.substring(7, 9);
+                }
+
+                e.target.value = formatted;
+            });
+        </script>
+
+    </body>
+</html>
