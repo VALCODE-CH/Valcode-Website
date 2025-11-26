@@ -75,11 +75,13 @@
                 </div>
 
                 <div class="contact-form-container">
-                    <form class="contact-form" action="mailto:info@valcode.ch" method="post" enctype="text/plain" name="contactForm">
+                    <form class="contact-form" id="contactForm" name="contactForm">
                         <div class="form-header">
                             <h2>Schreib uns eine Nachricht</h2>
                             <p>Fülle das Formular aus oder schreibe uns direkt an <a href="mailto:info@valcode.ch">info@valcode.ch</a></p>
                         </div>
+
+                        <div id="formMessage" class="form-message" style="display: none;"></div>
 
                         <div class="form-group">
                             <label for="name">Name *</label>
@@ -330,6 +332,86 @@
 
                 e.target.value = formatted;
             });
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const project = document.getElementById('project').value;
+                const message = document.getElementById('message').value.trim();
+
+                // Validate required fields
+                if (!name || !email || !message) {
+                    showMessage('Bitte fülle alle Pflichtfelder aus.', 'error');
+                    return;
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showMessage('Bitte gib eine gültige E-Mail-Adresse ein.', 'error');
+                    return;
+                }
+
+                // Project type translations
+                const projectTypes = {
+                    'webseite': 'Webseite',
+                    'webapp': 'Webapplikation',
+                    'mobile': 'Mobile App',
+                    'software': 'Software-Entwicklung',
+                    'hosting': 'Hosting',
+                    'api': 'API & Integrationen',
+                    'design': 'UI/UX Design',
+                    'andere': 'Andere'
+                };
+                const projectDisplay = project ? projectTypes[project] || project : 'Nicht angegeben';
+
+                // Build email body
+                const emailSubject = 'Kontaktanfrage von ' + name;
+                const emailBody = 'Neue Kontaktanfrage über valcode.ch\n\n' +
+                    'Name: ' + name + '\n' +
+                    'E-Mail: ' + email + '\n' +
+                    'Telefon: ' + (phone || 'Nicht angegeben') + '\n' +
+                    'Projekttyp: ' + projectDisplay + '\n\n' +
+                    'Nachricht:\n' + message + '\n\n' +
+                    '---\n' +
+                    'Diese E-Mail wurde über das Kontaktformular auf valcode.ch gesendet.';
+
+                // Create mailto link
+                const mailtoLink = 'mailto:info@valcode.ch' +
+                    '?subject=' + encodeURIComponent(emailSubject) +
+                    '&body=' + encodeURIComponent(emailBody);
+
+                // Open email client
+                window.location.href = mailtoLink;
+
+                // Show success message
+                showMessage('Dein E-Mail-Programm wird geöffnet. Bitte sende die E-Mail ab.', 'success');
+
+                // Reset form after a short delay
+                setTimeout(function() {
+                    contactForm.reset();
+                }, 2000);
+            });
+
+            // Show message function
+            function showMessage(text, type) {
+                formMessage.textContent = text;
+                formMessage.className = 'form-message ' + type;
+                formMessage.style.display = 'block';
+
+                // Hide message after 5 seconds
+                setTimeout(function() {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
         </script>
 
     </body>
