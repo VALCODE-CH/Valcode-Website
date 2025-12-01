@@ -403,6 +403,92 @@
     font-weight: 500;
 }
 
+/* CUSTOMER PORTAL */
+.customer-portal {
+    padding: 100px 60px;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-portal::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.customer-portal::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.portal-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.portal-icon {
+    font-size: 80px;
+    color: var(--color-white);
+    opacity: 0.9;
+}
+
+.portal-text h2 {
+    font-size: 42px;
+    margin-bottom: 16px;
+    color: var(--color-white);
+    line-height: 1.2;
+}
+
+.portal-text p {
+    font-size: 18px;
+    color: var(--color-white-90);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.portal-action .btn-primary {
+    background: var(--color-white);
+    color: var(--color-primary);
+    padding: 18px 36px;
+    font-size: 17px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.portal-action .btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.portal-action .btn-primary i {
+    transition: transform 0.3s ease;
+}
+
+.portal-action .btn-primary:hover i {
+    transform: translateX(5px);
+}
+
 /* ABOUT */
 .about {
     padding: 140px 60px;
@@ -684,8 +770,31 @@
         gap: 15px;
     }
 
-    .services, .about, .cta, .portfolio {
+    .services, .about, .cta, .portfolio, .customer-portal {
         padding: 60px 30px;
+    }
+
+    .portal-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .portal-icon {
+        font-size: 60px;
+    }
+
+    .portal-text h2 {
+        font-size: 32px;
+    }
+
+    .portal-text p {
+        font-size: 16px;
+    }
+
+    .portal-action .btn-primary {
+        width: 100%;
+        justify-content: center;
     }
 
     .section-title, .about h2, .cta-text h2 {
